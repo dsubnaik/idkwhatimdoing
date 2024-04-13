@@ -87,26 +87,33 @@
 </div>
 <div class="users-box">
     <h2>Users with similar interests</h2>
-    <ul>
-        <!-- Loop through matchedUsers and display each user -->
-        <!-- Assuming each UserProfile has a getUsername() method -->
-        <!-- Replace 'matchedUsers' with your actual list of matched users -->
-        <!-- Add more li items for each user if needed -->
-        <!-- Adjust the content displayed based on your UserProfile fields -->
-        <!-- You can display any user information you want -->
-        <!-- For now, displaying only the usernames -->
-        <!-- You can customize this as per your requirements -->
-        <!-- You may want to include links to user profiles or additional information -->
-        <!-- Example: <li><a href="/userprofile/{{matchedUser.getUsername()}}">{{matchedUser.getUsername()}}</a></li> -->
-        <c:forEach items="${matchedUsers}" var="matchedUser">
-            <li>${matchedUser.getUsername()}</li>
-        </c:forEach>
-    </ul>
+    <ul id="matchedUsersList"></ul>
 </div>
 <div class="search-box">
     <h4>Search by username</h4>
     <input type="text" id="searchbox" name="searchbox">
     <button>Go</button>
 </div>
+
+<script>
+    // Assuming 'matchedUsers' is an array of usernames
+    var matchedUsers = [ "User1", "User2", "User3" ]; // Replace with your actual list of matched users
+    
+    // Function to display matched users in the list
+    function displayMatchedUsers() {
+        var usersList = document.getElementById("matchedUsersList");
+        usersList.innerHTML = ""; // Clear the list before adding new users
+        
+        matchedUsers.forEach(function(user) {
+            var listItem = document.createElement("li");
+            listItem.textContent = user;
+            usersList.appendChild(listItem);
+        });
+    }
+    
+    // Call the function to display matched users when the page loads
+    window.onload = displayMatchedUsers;
+</script>
+
 </body>
 </html>
