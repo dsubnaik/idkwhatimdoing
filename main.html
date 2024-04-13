@@ -3,10 +3,10 @@
 <title>SkillXChange</title>
 <!--A header that says application name-->
 <div class ="appheader">
-    <h1>S     k     i     l     l     X     C     h     a     n     g     e</h1>
+	<h1>S     k     i     l     l     X     C     h     a     n     g     e</h1>
 </div>
 <style>
-    .appheader {
+	.appheader {
         background-color: #e1e8e7;
         color: black;
         padding: 10px;
@@ -27,7 +27,7 @@
         left: 0;
         background-color: #a3a3a3;
         padding-top: 20px;
-        text-shadow: 0 0 4px #000;
+		text-shadow: 0 0 4px #000;
     }
     
     .tab-label {
@@ -45,38 +45,37 @@
         text-align: center;
     }
     .tab-label:hover {
-        /*tab changes color when user hovers over it */
+    	/*tab changes color when user hovers over it */
         background-color: #8c8c8c;
     }
     
     .users-box {
-        width: 250px;
-        height: 60%;
-        padding: 20px;
-        border: 2px solid #ccc;
-        border-radius: 5px;
-        background-color: #f9f9f9;
-        position: fixed;
-        right: 75px;
-        overflow-y: auto; /* Adding scrollbar if content exceeds box height */
+    	width: 250px;
+    	height: 60%;
+    	padding: 20px;
+    	border: 2px solid #ccc;
+    	border-radius: 5px;
+    	background-color: #f9f9f9;
+    	position: fixed;
+    	right: 75px;
     }
     
     .search-box {
-        width: 250px;
-        height: 10%;
-        padding: 20px;
-        border: 2px solid #ccc;
-        border-radius: 5px;
-        background-color: #f9f9f9;
-        position: fixed;
-        left: 300px;        
+    	width: 250px;
+    	height: 10%;
+    	padding: 20px;
+    	border: 2px solid #ccc;
+    	border-radius: 5px;
+    	background-color: #f9f9f9;
+    	position: fixed;
+    	left: 300px;   	
     }
     
 </style>
 </head>
 <body>
 <div class="sidebar">
-    <!--providing links to the corresponding html pages for each tab-->
+	<!--providing links to the corresponding html pages for each tab-->
     <a href="/main" class="tab-label">Home</a>
     <a href="/notifications" class="tab-label">Notifications</a>
     <a href="/userprofile" class="tab-label">User Profile</a>
@@ -87,33 +86,17 @@
 </div>
 <div class="users-box">
     <h2>Users with similar interests</h2>
-    <ul id="matchedUsersList"></ul>
+    <ul>
+        <li th:each="user : ${matchingUsers}">
+            <span th:text="${user.username}"></span>
+            <!-- Display other user information as needed -->
+        </li>
+    </ul>
 </div>
 <div class="search-box">
-    <h4>Search by username</h4>
-    <input type="text" id="searchbox" name="searchbox">
-    <button>Go</button>
+	<h4>Search by username</h4>
+	<input type="text" id="searchbox" name="searchbox">
+	<button>Go</button>
 </div>
-
-<script>
-    // Assuming 'matchedUsers' is an array of usernames
-    var matchedUsers = [ "User1", "User2", "User3" ]; // Replace with your actual list of matched users
-    
-    // Function to display matched users in the list
-    function displayMatchedUsers() {
-        var usersList = document.getElementById("matchedUsersList");
-        usersList.innerHTML = ""; // Clear the list before adding new users
-        
-        matchedUsers.forEach(function(user) {
-            var listItem = document.createElement("li");
-            listItem.textContent = user;
-            usersList.appendChild(listItem);
-        });
-    }
-    
-    // Call the function to display matched users when the page loads
-    window.onload = displayMatchedUsers;
-</script>
-
 </body>
 </html>
